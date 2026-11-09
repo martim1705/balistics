@@ -19,8 +19,7 @@ running = True
 
 while (running):
 
-    
-
+    t = clock.get_time() / 1000.0   
     screen.fill("black")
 
     mouse_location = py.mouse.get_pos()
@@ -35,7 +34,8 @@ while (running):
                 
         # y = y0 + v0 * t - (g * t**2) / 2
     for ball in ball_list:
-        ball.y = ball.v0_y 
+        ball.pos_y += ball.v0_y + (g * t * t) / 2.0 
+        print((g * t * t) / 2.0)
         py.draw.circle(surface= screen, center=(ball.pos_x, ball.pos_y) ,radius = ball.radius, color="yellow")        
 
     py.display.flip()
