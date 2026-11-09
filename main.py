@@ -34,7 +34,10 @@ while (running):
                 
         # y = y0 + v0 * t - (g * t**2) / 2
     for ball in ball_list:
-        ball.pos_y += ball.v0_y + (g * dt * dt) / 2.0 
+        ball.pos_y += (g * dt * dt) / 2.0
+        ball.v_y += g * dt
+        print("ball speed x: " + str(ball.v_x) + " px/s")
+        print("ball speed y: " + str(ball.v_y) + " px/s") 
         py.draw.circle(surface= screen, center=(ball.pos_x, ball.pos_y) ,radius = ball.radius, color="yellow")        
 
     py.display.flip()

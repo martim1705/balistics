@@ -1,7 +1,7 @@
-# 1 meter == 100 px 
+# 1 meter == 10000 px 
 # 
 
-g = 981 # px/s  
+g = 98100 # px/s  
 print(g)
 gravitical_acc = {"Earth": g}
 
