@@ -2,7 +2,7 @@
 
 import pygame as py
 from elements import Ball 
-from physics import *
+
 
 height = 720
 width = 720
@@ -35,17 +35,8 @@ while (running):
         # y = y0 + v0 * t - (g * t**2) / 2
     for ball in ball_list:
 
-        if (ball.pos_y + ball.radius >= height):
-             ball.pos_y = height - ball.radius
-             if (ball.v_y > 0):  
-                ball.v_y = - ball.v_y
-
-             ball.pos_y += (g * dt * dt) / 2.0 + ball.v_y * dt
-             
-             # print("collision")
-        else:
-            ball.pos_y += (g * dt * dt) / 2.0 + ball.v_y * dt
-            ball.v_y += g * dt
+        ball.update(dt, width, height)
+        
         py.draw.circle(surface= screen, center=(ball.pos_x, ball.pos_y) ,radius = ball.radius, color="yellow")        
 
     py.display.flip()
