@@ -1,8 +1,8 @@
 # 1 meter == 10000 px 
 # 
 
-g = 98100 # px/s  
-print(g)
+g = 981 # px/s  
+
 gravitical_acc = {"Earth": g}
 
 # v = v0 - g * t 

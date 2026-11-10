@@ -34,10 +34,18 @@ while (running):
                 
         # y = y0 + v0 * t - (g * t**2) / 2
     for ball in ball_list:
-        ball.pos_y += (g * dt * dt) / 2.0
-        ball.v_y += g * dt
-        print("ball speed x: " + str(ball.v_x) + " px/s")
-        print("ball speed y: " + str(ball.v_y) + " px/s") 
+
+        if (ball.pos_y + ball.radius >= height):
+             ball.pos_y = height - ball.radius
+             if (ball.v_y > 0):  
+                ball.v_y = - ball.v_y
+
+             ball.pos_y += (g * dt * dt) / 2.0 + ball.v_y * dt
+             
+             # print("collision")
+        else:
+            ball.pos_y += (g * dt * dt) / 2.0 + ball.v_y * dt
+            ball.v_y += g * dt
         py.draw.circle(surface= screen, center=(ball.pos_x, ball.pos_y) ,radius = ball.radius, color="yellow")        
 
     py.display.flip()
