@@ -1,25 +1,26 @@
 from physics import *
+from vectors import *
+
+GRAVITY = Vector2(0, g)
 
 class Ball:
 
     def __init__(self, radius, pos_x, pos_y, mass,v_x = 0, v_y = 0):
         self.radius = radius
-        self.pos_x = pos_x
-        self.pos_y = pos_y
+        self.pos = Vector2(pos_x, pos_y)
         self.mass = mass # kg
-        self.v_x = v_x
-        self.v_y = v_y
+        self.v= Vector2(v_x, v_y)
 
-    def update(self, dt, width, height):
+    def update(self, dt, width, height):    
 
-        self.pos_y += (g * dt * dt) / 2.0 + self.v_y * dt
-        self.v_y += g * dt
+        self.pos += (GRAVITY * (dt * dt / 2.0)) + (self.v * dt)
+        self.v += GRAVITY * dt
 
-        if (self.pos_y + self.radius >= height):
-                     self.pos_y = height - self.radius
-                     if (self.v_y > 0):  
-                        self.v_y = - self.v_y * energy_loss
+        if (self.pos.y + self.radius >= height):
+                     self.pos.y = height - self.radius
+                     if (self.v.y > 0):  
+                        self.v.y = - self.v.y * energy_loss
 
-        if (abs(self.v_y) < 5):
-            self.v_y = 0
+        if (abs(self.v.y) < 5):
+            self.v.y = 0
     

@@ -37,7 +37,7 @@ while (running):
 
         ball.update(dt, width, height)
         
-        py.draw.circle(surface= screen, center=(ball.pos_x, ball.pos_y) ,radius = ball.radius, color="yellow")        
+        py.draw.circle(surface= screen, center=(ball.pos.x, ball.pos.y) ,radius = ball.radius, color="yellow")        
 
     py.display.flip()
     clock.tick(60)
