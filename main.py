@@ -1,7 +1,7 @@
  # corre a simulação
 
 import pygame as py
-from elements import Ball 
+from elements import Ball
 
 
 height = 720
@@ -32,7 +32,7 @@ while (running):
             elif event.type == py.MOUSEBUTTONDOWN:
                 ball_list.append(Ball(radius=30, pos_x = mouse_location[0], pos_y = mouse_location[1], mass=40))
                 
-        # y = y0 + v0 * t - (g * t**2) / 2
+        
     for ball in ball_list:
 
         ball.update(dt, width, height)

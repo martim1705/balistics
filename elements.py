@@ -18,8 +18,8 @@ class Ball:
         if (self.pos_y + self.radius >= height):
                      self.pos_y = height - self.radius
                      if (self.v_y > 0):  
-                        self.v_y = - self.v_y
-        
-                     self.pos_y += (g * dt * dt) / 2.0 + self.v_y * dt
-        
+                        self.v_y = - self.v_y * energy_loss
+
+        if (abs(self.v_y) < 5):
+            self.v_y = 0
     

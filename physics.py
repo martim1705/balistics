@@ -1,8 +1,8 @@
 # 1 meter == 10000 px 
 # 
 
-g = 981 # px/s  
-
+g = 981 # px/s^2  
+energy_loss = 0.80
 gravitical_acc = {"Earth": g}
 
 # v = v0 - g * t 
