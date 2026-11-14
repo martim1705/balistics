@@ -16,11 +16,15 @@ class Ball:
         self.pos += (GRAVITY * (dt * dt / 2.0)) + (self.v * dt)
         self.v += GRAVITY * dt
 
+        # floor 
         if (self.pos.y + self.radius >= height):
                      self.pos.y = height - self.radius
                      if (self.v.y > 0):  
                         self.v.y = - self.v.y * energy_loss
 
+        elif (self.pos.y - self.radius <= 0):
+             if (self.v.y < 0):
+                  self.v.y = -self.v.y * 0.8
         if (abs(self.v.y) < 5):
             self.v.y = 0
     

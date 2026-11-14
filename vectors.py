@@ -40,6 +40,8 @@ class Vector2:
     def __str__(self):
         return f"({self.x}, {self.y})"
 # teste
+'''
 vector_test = Vector2(0,3)
 other = Vector2(1,2)
 print(-vector_test)
+'''
