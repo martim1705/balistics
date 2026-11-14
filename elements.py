@@ -21,10 +21,22 @@ class Ball:
                      self.pos.y = height - self.radius
                      if (self.v.y > 0):  
                         self.v.y = - self.v.y * energy_loss
+            
 
         elif (self.pos.y - self.radius <= 0):
              if (self.v.y < 0):
                   self.v.y = -self.v.y * 0.8
-        if (abs(self.v.y) < 5):
-            self.v.y = 0
+
+        # sides
+
+        if (self.pos.x - self.radius <= 0):
+             self.pos.x = self.radius
+             if (self.v.x < 0):
+                  self.v.x = -self.v.x * energy_loss
+        elif (self.pos.x + self.radius >= width):
+             self.pos.x = width - self.radius
+             if (self.v.x > 0):
+                  self.v.x = -self.v.x * energy_loss
+        
+        
     
