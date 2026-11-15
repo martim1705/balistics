@@ -30,15 +30,20 @@ while (running):
             if event.type == py.QUIT:
                 running = False
             elif event.type == py.MOUSEBUTTONDOWN:
-                if (len(ball_list)) < 2:
-                    ball_list.append(Ball(radius=30, pos_x = mouse_location[0], pos_y = mouse_location[1], mass=40))
-                else:
-                     continue
-        
-    for ball in ball_list:
+                # if (len(ball_list)) < 2:
+                ball_list.append(Ball(radius=30, pos_x = mouse_location[0], pos_y = mouse_location[1], mass=40))
+                # else:
+                  #   continue
 
+    for ball in ball_list:
         ball.update(dt, width, height)
-        
+
+
+    for i in range(len(ball_list)):
+        for j in range(i + 1, len(ball_list)):
+            ball_list[i].ball_collision(ball_list[j], 0.8)
+
+    for ball in ball_list:
         py.draw.circle(surface= screen, center=(ball.pos.x, ball.pos.y) ,radius = ball.radius, color="yellow")        
 
     py.display.flip()

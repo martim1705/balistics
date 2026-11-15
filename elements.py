@@ -11,9 +11,7 @@ class Ball:
         self.mass = mass # kg
         self.v= Vector2(v_x, v_y)
 
-    def update(self, dt, width, height):    
-
-
+    def update(self, dt, width, height):
         # ----------------------- movement -------------------------
 
 
@@ -26,26 +24,42 @@ class Ball:
 
         # floor 
         if (self.pos.y + self.radius >= height):
-                     self.pos.y = height - self.radius
-                     if (self.v.y > 0):  
-                        self.v.y = - self.v.y * energy_loss
+            self.pos.y = height - self.radius
+            if (self.v.y > 0):  
+                self.v.y = - self.v.y * energy_loss
             
         # ceiling
         elif (self.pos.y - self.radius <= 0):
-             if (self.v.y < 0):
-                  self.v.y = -self.v.y * 0.8
+            if (self.v.y < 0):
+                self.v.y = -self.v.y * 0.8
 
         # sides
 
         if (self.pos.x - self.radius <= 0):
-             self.pos.x = self.radius
-             if (self.v.x < 0):
-                  self.v.x = -self.v.x * energy_loss
+            self.pos.x = self.radius
+            if (self.v.x < 0):
+                self.v.x = -self.v.x * energy_loss
         elif (self.pos.x + self.radius >= width):
-             self.pos.x = width - self.radius
-             if (self.v.x > 0):
-                  self.v.x = -self.v.x * energy_loss
+            self.pos.x = width - self.radius
+            if (self.v.x > 0):
+                self.v.x = -self.v.x * energy_loss
         
         # between balls
-          
-    
+
+    def ball_collision(self, other, e):
+
+        if (abs((self.pos - other.pos).length()) <= (self.radius + other.radius)):
+          n = other.pos - self.pos
+          n_normalized = n.normalized()
+
+          v_n_1_i = self.v.dot(n_normalized)
+          v_n_2_i = other.v.dot(n_normalized)
+
+          if (v_n_1_i - v_n_2_i > 0):
+               v_n_1_f = (v_n_1_i + v_n_2_i - e * (v_n_1_i - v_n_2_i)) / 2
+               v_n_2_f = (v_n_1_i + v_n_2_i + e * (v_n_1_i - v_n_2_i)) / 2 
+
+               self.v.x += (v_n_1_f - v_n_1_i) * n_normalized.x
+               self.v.y += (v_n_1_f - v_n_1_i) * n_normalized.y
+               other.v.x += (v_n_2_f - v_n_2_i) * n_normalized.x
+               other.v.y += (v_n_2_f - v_n_2_i) * n_normalized.y
