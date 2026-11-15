@@ -13,8 +13,16 @@ class Ball:
 
     def update(self, dt, width, height):    
 
+
+        # ----------------------- movement -------------------------
+
+
         self.pos += (GRAVITY * (dt * dt / 2.0)) + (self.v * dt)
         self.v += GRAVITY * dt
+
+
+        # ----------------------- collisions ------------------------- 
+
 
         # floor 
         if (self.pos.y + self.radius >= height):
@@ -22,7 +30,7 @@ class Ball:
                      if (self.v.y > 0):  
                         self.v.y = - self.v.y * energy_loss
             
-
+        # ceiling
         elif (self.pos.y - self.radius <= 0):
              if (self.v.y < 0):
                   self.v.y = -self.v.y * 0.8
@@ -38,5 +46,6 @@ class Ball:
              if (self.v.x > 0):
                   self.v.x = -self.v.x * energy_loss
         
-        
+        # between balls
+          
     

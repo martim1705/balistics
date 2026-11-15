@@ -30,8 +30,10 @@ while (running):
             if event.type == py.QUIT:
                 running = False
             elif event.type == py.MOUSEBUTTONDOWN:
-                ball_list.append(Ball(radius=30, pos_x = mouse_location[0], pos_y = mouse_location[1], mass=40))
-                
+                if (len(ball_list)) < 2:
+                    ball_list.append(Ball(radius=30, pos_x = mouse_location[0], pos_y = mouse_location[1], mass=40))
+                else:
+                     continue
         
     for ball in ball_list:
 
